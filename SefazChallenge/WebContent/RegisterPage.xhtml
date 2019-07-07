@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Frameset//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+<h:head>
+	<title>Cadastro de Usuário</title>
+</h:head>
+
+<h:body>
+
+	<h:form id="formUsuario">
+
+		<fieldset>
+
+			<h:outputText value="Nome: " for="campoNome" />
+			<h:inputText id="campoNome" value="#{userBean.name}" />
+			<br /> <br />
+			<h:outputText value="Email: " for="campoEmail" />
+			<h:inputText id="campoEmail" value="#{userBean.email}" />
+			<br /> <br />
+			<h:outputText value="Senha: " for="campoSenha" />
+			<h:inputSecret id="campoSenha" value="#{userBean.password}" />
+			<br /> <br />
+			<h:outputText value="Contato:" />
+			<br /> <br />
+			<h:outputText value="DDD: " />
+			<h:inputText binding="#{input1}"/>
+			<h:outputText value="   Número:" />
+			<h:inputText binding="#{input2}"  />
+			<h:outputText value="   Tipo: "  />
+			<h:inputText binding="#{input3}"  />
+			<h:commandButton value="Adicionar Contato"
+				action="#{userBean.addPhone(input1.value, input2.value, input3.value)}" />
+
+			<br /> <br />
+			<h:commandButton value="Cadastrar" action="List" />
+
+			<h:dataTable value="#{userBean.phones}" var="number">
+				<h:column>
+					<h:outputText value="#{number}"></h:outputText>
+				</h:column>
+			</h:dataTable>
+
+
+		</fieldset>
+
+	</h:form>
+
+</h:body>
+
+
+</html>
