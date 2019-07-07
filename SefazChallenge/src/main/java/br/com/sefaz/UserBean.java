@@ -5,14 +5,22 @@ import java.util.ArrayList;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.bean.ViewScoped;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotNull;
 
 @ManagedBean (name = "userBean")
 @ViewScoped
 public class UserBean {
 	
+	@NotNull(message = "Nome deve ser informado")
 	private String name;
+	
+	@Email(message = "Forneça um e-mail válido")
 	private String email;
+	
+	@NotNull(message = "Senha deve ser informado")
 	private String password;
+	
 	ArrayList<Phone> phones = new ArrayList<Phone>();
 	
 	

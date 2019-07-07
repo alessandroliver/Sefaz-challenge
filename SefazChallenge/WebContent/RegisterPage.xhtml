@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Frameset//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:h="http://java.sun.com/jsf/html">
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
 
 <h:head>
 	<title>Cadastro de Usuário</title>
@@ -14,22 +15,31 @@
 		<fieldset>
 
 			<h:outputText value="Nome: " for="campoNome" />
-			<h:inputText id="campoNome" value="#{userBean.name}" />
+			<h:inputText id="campoNome" value="#{userBean.name}"
+			required = "true" requiredMessage = "Informe o nome do usuário" />
 			<br /> <br />
 			<h:outputText value="Email: " for="campoEmail" />
-			<h:inputText id="campoEmail" value="#{userBean.email}" />
+			<h:inputText id="campoEmail" value="#{userBean.email}"
+			required = "true" requiredMessage = "Informe o e-mail do usuário" />
 			<br /> <br />
 			<h:outputText value="Senha: " for="campoSenha" />
-			<h:inputSecret id="campoSenha" value="#{userBean.password}" />
+			<h:inputSecret id="campoSenha" value="#{userBean.password}"
+			required = "true" requiredMessage = "Informe a senha do usuário" />
 			<br /> <br />
 			<h:outputText value="Contato:" />
 			<br /> <br />
 			<h:outputText value="DDD: " />
-			<h:inputText binding="#{input1}"/>
+			<h:inputText binding="#{input1}"
+			required = "true" requiredMessage = "Informe o DDD" />
 			<h:outputText value="   Número:" />
-			<h:inputText binding="#{input2}"  />
+			<h:inputText binding="#{input2}"
+			required = "true" requiredMessage = "Informe o número"
+			validatorMessage = "O DDD deve ter o formato 0XX">
+			<f:validateLength minimum = "3" maximum = "3"/>
+			</h:inputText>
 			<h:outputText value="   Tipo: "  />
-			<h:inputText binding="#{input3}"  />
+			<h:inputText binding="#{input3}"
+			required = "true" requiredMessage = "Informe o tipo"   />
 			<h:commandButton value="Adicionar Contato"
 				action="#{userBean.addPhone(input1.value, input2.value, input3.value)}" />
 
