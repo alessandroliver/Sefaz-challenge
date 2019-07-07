@@ -4,9 +4,10 @@ import java.util.ArrayList;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+import javax.faces.bean.ViewScoped;
 
 @ManagedBean (name = "userBean")
-@RequestScoped
+@ViewScoped
 public class UserBean {
 	
 	private String name;
