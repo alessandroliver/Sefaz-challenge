@@ -18,7 +18,7 @@ public class UserEntity implements Serializable{
 	private String name;
 	private String email;
 	private String password;
-	private ArrayList<Phone> phones;
+	//private ArrayList<Phone> phones;
 	
 	public UserEntity() {
 		
@@ -78,13 +78,13 @@ public class UserEntity implements Serializable{
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	public ArrayList<Phone> getPhones() {
-		return phones;
-	}
-	public void setPhones(ArrayList<Phone> phones) {
-		this.phones = phones;
-	}
-	
+//	public ArrayList<Phone> getPhones() {
+//		return phones;
+//	}
+//	public void setPhones(ArrayList<Phone> phones) {
+//		this.phones = phones;
+//	}
+//	
 	
 	
 	
