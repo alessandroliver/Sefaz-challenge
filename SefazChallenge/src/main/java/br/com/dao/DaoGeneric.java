@@ -2,10 +2,13 @@ package br.com.dao;
 
 import java.util.List;
 
+import javax.persistence.Entity;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 
+import br.com.entities.UserEntity;
 import br.com.jpautils.JPAUtil;
+import br.com.sefaz.UserBean;
 
 public class DaoGeneric<E> {
 
@@ -33,15 +36,14 @@ public class DaoGeneric<E> {
 		return r;
 	}
 
-	public void deleteID(E entity) {
+	public void deleteID(String id) {
 
 		EntityManager entityManager = JPAUtil.getEntityManager();
 		EntityTransaction entityTransaction = entityManager.getTransaction();
 		entityTransaction.begin();
 
-		Object id = JPAUtil.getPrimaryKey(entity);
-		entityManager.createQuery("delete from " + entity.getClass().getCanonicalName() + " where id= " + id)
-				.executeUpdate();
+		
+		entityManager.createQuery("delete from " + "UserEntity" + " where id= " + id).executeUpdate();
 		entityTransaction.commit();
 		entityManager.close();
 	}

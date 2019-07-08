@@ -25,17 +25,57 @@
 			<h:outputText value="Senha: " for="campoSenha" />
 			<h:inputSecret value="#{userBean.userEntity.password}" />
 			<br /> <br />
-			<h:commandButton value="Adicionar" action="#{userBean.saveEntity}" />
-			<h:commandButton value="Update" action="#{userBean.merge}" />
-			<h:commandButton value="Remove" action="#{userBean.delete}" />
+			<h:outputText value="Contato:" />
 			<br /> <br />
+			<h:outputText value="DDD: " />
+			<h:inputText binding="#{i1}"/>
+			<h:outputText value="   Número:" />
+			<h:inputText binding="#{i2}" >
+			</h:inputText>
+			<h:outputText value="   Tipo: " />
+			<h:inputText binding="#{i3}"/>
+
+			<h:commandButton value="Adicionar Contato"
+				action="#{userBean.addPhone(i1.value, i2.value, i3.value)}" />
+			<br /> <br /> <br /> 
 			<br /> <br />
-			<h:outputText value="Usuários cadastrados: "/>
-			<h:dataTable value = "#{userBean.users}" var = "user">
+
+			<h:commandButton value="Adicionar Usuário"
+				action="#{userBean.saveEntity}" />
+			<br /> <br /> <br /> <br />
+
+
+
+			<h:dataTable value="#{userBean.users}" var="user">
 				<h:column>
-					<h:outputText value = "#{user.name}"/>
+					<f:facet name="header">Id</f:facet>
+
+					<h:inputText value="#{user.id}" readonly="true" binding="#{input1}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">Nome</f:facet>
+
+					<h:inputText value="#{user.name}" readonly="false"
+						binding="#{input2}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">E-mail</f:facet>
+
+					<h:inputText value="#{user.email}" readonly="false"
+						binding="#{input3}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">Password</f:facet>
+					<h:inputText value="#{user.password}" readonly="false"
+						binding="#{input4}" />
+
+					<h:commandButton value="Update"
+						action="#{userBean.merge(input3.value, input2.value, input4.value, input1.value)}" />
+					<h:commandButton value="Remove"
+						action="#{userBean.delete(input1.value)}" />
 				</h:column>
 			</h:dataTable>
+
 
 		</fieldset>
 
