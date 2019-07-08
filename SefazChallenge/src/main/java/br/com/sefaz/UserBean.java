@@ -1,6 +1,7 @@
 package br.com.sefaz;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
@@ -8,67 +9,64 @@ import javax.faces.bean.ViewScoped;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 
-@ManagedBean (name = "userBean")
+import br.com.dao.DaoGeneric;
+import br.com.entities.UserEntity;
+
 @ViewScoped
+@ManagedBean(name = "userBean")
 public class UserBean {
-	
-	@NotNull(message = "Nome deve ser informado")
-	private String name;
-	
-	@Email(message = "Forneça um e-mail válido")
-	private String email;
-	
-	@NotNull(message = "Senha deve ser informado")
-	private String password;
-	
-	ArrayList<Phone> phones = new ArrayList<Phone>();
-	
-	
-	
-	public UserBean(String name, String email, String password) {
-		this.name = name;
-		this.email = email;
-		this.password = password;
-	}
-	
-	public UserBean() {
-		
-	}
-	
-	public String addPhone(String ddd, String number, String type) {
-		Phone phone = new Phone(Integer.parseInt(ddd), number, type);
-		phones.add(phone);
+
+	private UserEntity userEntity = new UserEntity();
+	private DaoGeneric<UserEntity> daoGeneric = new DaoGeneric<>();
+	private List<UserEntity> users = new ArrayList<UserEntity>();
+
+	public String saveEntity() {
+		daoGeneric.save(userEntity);
+		userEntity = new UserEntity();
+		getUserList();
+
 		return "";
-		
-		
 	}
-	 
-	public String getName() {
-		return name;
+
+	public String merge() {
+		userEntity = daoGeneric.merge(userEntity);
+		getUserList();
+		return "";
 	}
-	public void setName(String name) {
-		this.name = name;
+
+	public void getUserList() {
+		users = daoGeneric.getGenericList(UserEntity.class);
+
 	}
-	public String getEmail() {
-		return email;
+
+	public List<UserEntity> getUsers() {
+		return users;
 	}
-	public void setEmail(String email) {
-		this.email = email;
+
+	public void setUsers(List<UserEntity> users) {
+		this.users = users;
 	}
-	public String getPassword() {
-		return password;
+
+	public String delete() {
+		daoGeneric.deleteID(userEntity);
+		getUserList();
+		return "";
 	}
-	public void setPassword(String password) {
-		this.password = password;
+
+	public UserEntity getUserEntity() {
+		return userEntity;
 	}
-	public ArrayList<Phone> getPhones() {
-		return phones;
+
+	public void setUserEntity(UserEntity userEntity) {
+		this.userEntity = userEntity;
 	}
-	public void setPhones(ArrayList<Phone> phones) {
-		this.phones = phones;
+
+	public DaoGeneric<UserEntity> getDaoGeneric() {
+		return daoGeneric;
 	}
-	
-	
-	
+
+	public void setDaoGeneric(DaoGeneric<UserEntity> daoGeneric) {
+		this.daoGeneric = daoGeneric;
+	}
 
 }

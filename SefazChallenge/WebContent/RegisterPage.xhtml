@@ -13,45 +13,29 @@
 	<h:form id="formUsuario">
 
 		<fieldset>
-
+			<h:outputLabel value="ID:  " />
+			<h:inputText value="#{userBean.userEntity.id}" readonly="true" />
+			<br> </br>
 			<h:outputText value="Nome: " for="campoNome" />
-			<h:inputText id="campoNome" value="#{userBean.name}"
-			required = "true" requiredMessage = "Informe o nome do usuário" />
+			<h:inputText value="#{userBean.userEntity.name}" />
 			<br /> <br />
 			<h:outputText value="Email: " for="campoEmail" />
-			<h:inputText id="campoEmail" value="#{userBean.email}"
-			required = "true" requiredMessage = "Informe o e-mail do usuário" />
+			<h:inputText value="#{userBean.userEntity.email}" />
 			<br /> <br />
 			<h:outputText value="Senha: " for="campoSenha" />
-			<h:inputSecret id="campoSenha" value="#{userBean.password}"
-			required = "true" requiredMessage = "Informe a senha do usuário" />
+			<h:inputSecret value="#{userBean.userEntity.password}" />
 			<br /> <br />
-			<h:outputText value="Contato:" />
+			<h:commandButton value="Adicionar" action="#{userBean.saveEntity}" />
+			<h:commandButton value="Update" action="#{userBean.merge}" />
+			<h:commandButton value="Remove" action="#{userBean.delete}" />
 			<br /> <br />
-			<h:outputText value="DDD: " />
-			<h:inputText binding="#{input1}"
-			required = "true" requiredMessage = "Informe o DDD" />
-			<h:outputText value="   Número:" />
-			<h:inputText binding="#{input2}"
-			required = "true" requiredMessage = "Informe o número"
-			validatorMessage = "O DDD deve ter o formato 0XX">
-			<f:validateLength minimum = "3" maximum = "3"/>
-			</h:inputText>
-			<h:outputText value="   Tipo: "  />
-			<h:inputText binding="#{input3}"
-			required = "true" requiredMessage = "Informe o tipo"   />
-			<h:commandButton value="Adicionar Contato"
-				action="#{userBean.addPhone(input1.value, input2.value, input3.value)}" />
-
 			<br /> <br />
-			<h:commandButton value="Cadastrar" action="List" />
-
-			<h:dataTable value="#{userBean.phones}" var="number">
+			<h:outputText value="Usuários cadastrados: "/>
+			<h:dataTable value = "#{userBean.users}" var = "user">
 				<h:column>
-					<h:outputText value="#{number}"></h:outputText>
+					<h:outputText value = "#{user.name}"/>
 				</h:column>
 			</h:dataTable>
-
 
 		</fieldset>
 
